@@ -78,11 +78,11 @@ class CheckPingdomAggregates < Sensu::Plugin::Check::CLI
   rescue Errno::ECONNREFUSED
     warning 'Connection refused'
   rescue RestClient::RequestFailed
-    warning 'Request failed'
+    critical 'Request failed'
   rescue RestClient::RequestTimeout
     warning 'Connection timed out'
   rescue RestClient::Unauthorized
-    warning 'Missing or incorrect API credentials'
+    critical 'Missing or incorrect API credentials'
   rescue JSON::ParserError
     warning 'API returned invalid JSON'
   end
